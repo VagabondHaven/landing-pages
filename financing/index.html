@@ -224,9 +224,9 @@
   .rail p{font-size:.95rem;color:var(--muted)}
   .rail .n{font-size:.72rem;letter-spacing:.19em;text-transform:uppercase;color:var(--terra);font-weight:500;display:block;margin-bottom:10px}
 
-  table{width:100%;border-collapse:collapse;font-size:.93rem}
+  table{width:100%;border-collapse:collapse;font-size:.93rem;table-layout:fixed;min-width:880px}
   .tablewrap{overflow-x:auto;border:1px solid var(--line);background:var(--card)}
-  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top;overflow-wrap:break-word;hyphens:none}
   th{font-size:.72rem;text-transform:uppercase;letter-spacing:.13em;color:var(--muted);font-weight:500;background:var(--sand)}
   tr:last-child td{border-bottom:0}
   td b{font-weight:500}
@@ -481,7 +481,7 @@
       <div class="result" id="b-result" aria-live="polite">
         <div class="result-head">
           <span class="rlabel">Lease, worked example</span>
-          <h3 id="b-route-name">Business lease over seven years</h3>
+          <h3 id="b-route-name">Business lease over six years</h3>
         </div>
         <div class="result-body">
           <div class="twobig">
@@ -490,7 +490,7 @@
             <span class="bigfig in" id="b-left">0 €</span>
             <span class="biglab" id="b-left-lab">Yours to keep</span>
           </div>
-          <p class="bigfoot">For <span id="b-unittext">one house</span>, over seven years.</p>
+          <p class="bigfoot">For <span id="b-unittext">one house</span>, over six years.</p>
           <p class="note" id="b-route-why" style="margin-top:12px;max-width:62ch"></p>
 
           <div class="costbox">
@@ -506,7 +506,7 @@
               <div class="rule"><span class="k">Left after the lease, a month</span><span class="v" id="b-left-row2">0 €</span></div>
               <div><span class="k">Earns back the house in</span><span class="v lead" id="b-payback">0 years</span></div>
             </div>
-            <p class="caution"><b>A lease is a third party's to approve.</b> No lessor publishes a rate for this kind of building. The example uses 84 months, a first payment of 10 per cent, a buy-out of 10 per cent and 7.5 per cent nominal, the middle of the 6 to 9 per cent range implied by published lease contracts in Sweden, Germany and Denmark. All figures exclude VAT. A lease is charged in twelve monthly payments while a seasonal site earns in five, so the income figure is a full year averaged by month.</p>
+            <p class="caution"><b>A lease is a third party's to approve.</b> The example uses 72 months, no first payment and no buy-out, at 8.4 per cent nominal. Those are the indicative terms our leasing partner quoted us in September 2026 on a 100 000 &euro; house, published with their permission as a non-binding example. 72 months rather than longer because many refinancing banks will not go beyond it. All figures exclude VAT. A lease is charged in twelve monthly payments while a seasonal site earns in five, so the income figure is a full year averaged by month.</p>
           </div>
           <div class="alt" id="b-alt"></div>
         </div>
@@ -525,6 +525,10 @@
 
     <div class="tablewrap">
       <table>
+        <colgroup>
+          <col style="width:15%"><col style="width:31%">
+          <col style="width:18%"><col style="width:18%"><col style="width:18%">
+        </colgroup>
         <thead>
           <tr><th>Route</th><th>What it is</th><th>Mobile, on wheels</th><th>Semi-mobile, steel frame</th><th>Modular, on a foundation</th></tr>
         </thead>
@@ -541,23 +545,23 @@
           </tr>
           <tr>
             <td><b>A loan with no security</b></td>
-            <td>A specialist lender lends against your income rather than against property. Some assign part of your salary or take ownership of the house as cover instead of a charge on land. <b>3.8 per cent at the best we found, in Finland, to 11.6 per cent at the worst, in Portugal.</b></td>
+            <td>A specialist lender lends against your income rather than against property. Some assign part of your salary or take ownership of the house as cover instead of a charge on land. <b>The specialist lenders we work with lend 10 000 to 50 000 &euro; with no security at all, or 50 000 to 125 000 &euro; against the house itself with twenty per cent own funds and up to fifteen years, and can pay out in our three instalments.</b> Houses on wheels and modular houses both qualify. Published rates for this route run from 3.8 to 11.6 per cent, so ask us who lends where you are.</td>
             <td class="yes">Best fit</td><td class="yes">Best fit</td><td class="maybe">Available, but costs more</td>
           </tr>
           <tr>
             <td><b>Leisure vehicle finance</b></td>
-            <td>The same lending caravans and motorhomes use, secured on the registration document. Long terms, and it only exists if the house is road-registered. <b>5.5 to 9 per cent on lenders&rsquo; own representative examples, and terms to fifteen years. The cheapest published deals want about twenty per cent down.</b></td>
-            <td class="maybe">If registered as a trailer</td><td class="no">Too heavy</td><td class="no">Closed</td>
+            <td>The same lending caravans and motorhomes use, secured on the registration document. <b>5.5 to 9 per cent on lenders&rsquo; own representative examples, and terms to fifteen years. The cheapest published deals want about twenty per cent down.</b> Our mobile houses stand on a permanent galvanised trailer, and the trailer can be registered as a caravan, which is what a caravan lender needs to see. Each lender sets its own conditions on registration and weight, and in some of our markets we have not yet found one who will do it, so ask us before you count on it.</td>
+            <td class="maybe">Open if registered as a caravan</td><td class="no">Too heavy</td><td class="no">Closed</td>
           </tr>
           <tr>
             <td><b>Business lease</b></td>
-            <td>The lessor owns the house, you pay monthly and buy it at the end for a set amount. Business customers only, and the unit has to stay relocatable. <b>6 to 9 per cent, over five to seven years, with about ten per cent at the start and ten per cent at the end to own it.</b></td>
+            <td>The lessor owns the house and you pay monthly. Business customers only, and the unit has to stay relocatable. <b>About 1 775 &euro; a month for every 100 000 &euro; of house, over 72 months, with no down payment and nothing to pay at the end to own it. That works out at about 8.4 per cent.</b></td>
             <td class="yes">Open</td><td class="yes">Best fit</td><td class="maybe">Only if demountable</td>
           </tr>
           <tr>
             <td><b>Instalments at the point of sale</b></td>
-            <td>Credit arranged as part of the purchase. Useful for a deposit or for options and extras. <b>The ceiling is the problem rather than the rate: typically 10 000 &euro; over 36 months, well below the price of a whole house.</b></td>
-            <td class="maybe">Part of the price only</td><td class="maybe">Part of the price only</td><td class="maybe">Part of the price only</td>
+            <td>Credit arranged as part of the purchase, with no charge on the house, so the model you choose does not matter. <b>Where we have a lender in place, up to about 31 000 &euro; over twelve years at just under 7 per cent, against 20 per cent paid to us as a deposit.</b> Where we do not, the usual ceiling is about 10 000 &euro; over 36 months, which covers options rather than a house. Ask us which applies to you.</td>
+            <td class="yes">Up to 31&nbsp;000&nbsp;&euro;</td><td class="yes">Up to 31&nbsp;000&nbsp;&euro;</td><td class="yes">Up to 31&nbsp;000&nbsp;&euro;</td>
           </tr>
         </tbody>
       </table>
@@ -580,7 +584,7 @@
     <div class="stepswrap">
     <div class="steps">
       <div class="step"><div><h3>Price your house</h3><p>Put your house together in the <a href="https://vagabondhaven.com/prices" target="_blank" rel="noopener">price calculators</a>, then ask us for the documents. We need the model, roughly where it goes, and whether you own that ground.</p></div></div>
-      <div class="step"><div><h3>We send what your lender needs</h3><p>A written quote, the specification, the weight and dimensions certificate, the permit position for your municipality and the document list your lender works from. One email, nothing for you to chase.</p></div></div>
+      <div class="step"><div><h3>We send what your lender needs</h3><p>A written quote, the specification, the recorded weight and dimensions of your unit, the permit position for your municipality and the document list your lender works from. If you are borrowing from your own bank, we also send a pack written for them, so your adviser has every answer in one document. One email, nothing for you to chase.</p></div></div>
       <div class="step"><div><h3>You apply to the lender</h3><p>You borrow from the lender, not from us, so the credit agreement is between you and them. We are not paid to steer you towards one lender over another.</p></div></div>
       <div class="step"><div><h3>We start the build</h3><p>About three months for a custom build, two to four weeks from stock. Payments usually run 30 per cent when you sign, 50 per cent part way through the build and 20 per cent before delivery, or half and half on a ready-built house. We can adjust that schedule if you need us to, and whatever we agree is written into your contract.</p></div></div>
       <div class="step"><div><h3>Delivery</h3><p>We deliver to your plot, connect the house and do the final check on site. The warranty runs five years from there.</p></div></div>
@@ -620,9 +624,9 @@
     <form class="pack" id="packform" novalidate>
       <div class="f"><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" required></div>
       <div class="f"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+      <div class="f"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" required></div>
       <div class="f"><label for="f-country">Where the house will stand</label><select id="f-country" name="country" required></select></div>
       <div class="f"><label for="f-model">Model <em>&mdash; if you have one in mind</em></label><input id="f-model" name="model"></div>
-      <div class="f"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" required></div>
       <div class="f"><label for="f-land">The plot <em>&mdash; optional</em></label><input id="f-land" name="land" placeholder="Own land, rented, or still looking"></div>
       <div class="f wide"><label for="f-msg">Anything else <em>&mdash; optional</em></label><textarea id="f-msg" name="message"></textarea></div>
       <div class="f wide">
@@ -638,7 +642,7 @@
 <footer>
   <div class="wrap stack" style="gap:8px">
     <p>Vagabond Haven AB, Geijersgatan 46B, 752 26 Uppsala, Sweden. +46 (0)18 25 88 99, info@vagabondhaven.com</p>
-    <p class="basis"><b>How the figures on this page are worked out.</b> Monthly range: the lowest and the highest figure the calculator on this page produces for a house someone can live in, across every model, every country we deliver to and both the furnished and the off-grid specification. The low end is a fully furnished Nature Pod at 32 500 &euro; financed in Finland over twenty-five years at 3.6 per cent, with the 25 per cent deposit Finnish lenders ask for, which is 123 &euro; a month. An empty shell with no kitchen or bathroom would be cheaper still, from 66 &euro;, but it is not a house to live in so we do not quote it. The high end is a fully off-grid Evergreen at 94 000 &euro; in Portugal on a loan with no security, 8.85 per cent over five years, which is 1 551 &euro; a month and covers 75 000 &euro; of the price, because that is the Portuguese ceiling for the route, so the rest has to come from somewhere else. Both ends are rounded up to the nearest hundred rather than down.</p>
+    <p class="basis"><b>How the figures on this page are worked out.</b> Monthly range: the lowest and the highest figure the calculator on this page produces for a house someone can live in, across every model, every country we deliver to and both the furnished and the off-grid specification. The low end is a fully furnished Nature Pod at 32 500 &euro; financed over twenty-five years at 3.6 per cent, with the 25 per cent deposit the cheapest lenders in our markets ask for, which is 123 &euro; a month. An empty shell with no kitchen or bathroom would be cheaper still, from 66 &euro;, but it is not a house to live in so we do not quote it. The high end is a fully off-grid Evergreen at 94 000 &euro; on a loan with no security, 8.85 per cent over five years, which is 1 551 &euro; a month and covers 75 000 &euro; of the price, because that is the ceiling for the route, so the rest has to come from somewhere else. Both ends are rounded up to the nearest hundred rather than down.</p>
     <p>Prices shown exclude VAT and are base prices before options. Images and visualisations on the website and in the house configurators are for illustrative purposes only. Nothing on this page is an offer of credit, a credit quotation or financial advice.</p>
   </div>
 </footer>
@@ -1039,7 +1043,7 @@
     var land = document.querySelector('input[name="b-land"]:checked').value;
     var m = modelByName($('b-model').value);
 
-    var n = 84, r = 0.075/12, firstPct = 0.10, resPct = 0.10;
+    var n = 72, r = 0.084/12, firstPct = 0, resPct = 0;
     var first = price * firstPct, residual = price * resPct;
     var financed = price - first;
     var monthly = (financed - residual / Math.pow(1+r, n)) * r / (1 - Math.pow(1+r, -n));
@@ -1071,8 +1075,8 @@
     $('b-opex').textContent = incomeMonthly > 0 ? euro(nightly * nights * costPct * units) + '  (' + Math.round(costPct*100) + ' %)' : '\u2014';
     $('b-net').textContent  = incomeMonthly > 0 ? euro(nightly * nights * (1-costPct) * units) : '\u2014';
     $('b-cost-price').textContent = euro(price * units);
-    $('b-first').textContent = euro(first * units) + '  (10 %)';
-    $('b-residual').textContent = euro(residual * units) + '  (10 %)';
+    $('b-first').textContent = first > 0 ? euro(first * units) + '  (10 %)' : 'None';
+    $('b-residual').textContent = residual > 0 ? euro(residual * units) + '  (10 %)' : 'None';
     $('b-lease').textContent = euro(monthly * units);
     $('b-inlabel').textContent = inLabel;
     $('b-income').textContent = incomeMonthly > 0 ? euro(incomeMonthly * units) : 'You tell us';
