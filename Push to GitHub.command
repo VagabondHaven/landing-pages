@@ -32,7 +32,8 @@ if [ -z "$ahead" ]; then
 else
   printf 'Sending:\n\n%s\n\n' "$ahead"
   if git push origin main; then
-    printf '\nDone. https://github.com/VagabondHaven/landing-pages\n\n'
+    printf '\nDone, and this goes live on the site.\n'
+    printf 'https://github.com/VagabondHaven/landing-pages\n\n'
   else
     printf '\nPush failed, the reason is above.\n\n'
   fi

@@ -28,8 +28,10 @@ rewriting one from tool output truncates it.
 Keep a dated backup beside the file before a large change, named
 `index.html.bak-YYYY-MM-DD`. Those are gitignored.
 
-The repository mirrors what is live. Committing here does not deploy anything:
-Manu uploads the changed `index.html` to the server himself.
+A push publishes. Samuel set up the website to pull from this repository and
+mirror it, so what lands on `main` reaches the live pages. Treat every push as
+going public, and check the exact mechanism and any delay with Samuel before
+relying on timing.
 
 ## The financing page
 
