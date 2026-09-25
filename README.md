@@ -1,6 +1,7 @@
 # Vagabond Haven landing pages
 
-Source files of the five public landing pages, exactly as they are live (checked 21 September 2026).
+Source files of the seven public landing pages, exactly as they are live (the five
+first checked 21 September 2026, the two referral pages downloaded 23 September 2026).
 
 | Folder | Live URL |
 |---|---|
@@ -9,5 +10,7 @@ Source files of the five public landing pages, exactly as they are live (checked
 | referrals/ | https://referrals.vagabondhaven.com/ |
 | financing/ | https://financing.vagabondhaven.com/ |
 | faq/ | https://faq.vagabondhaven.com/ |
+| referral-terms/ | https://referral-terms.vagabondhaven.com/ |
+| referral-register/ | https://referral-register.vagabondhaven.com/ |
 
 Each page is a single `index.html`. Images are embedded in the HTML, except on the FAQ page, which loads its photos and two PDFs from its own folder. Fonts come from Google Fonts.

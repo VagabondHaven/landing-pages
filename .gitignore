@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+
+# Local backups kept beside the pages
+*.bak-*
+
+# Folders that are not part of the public landing pages.
+# "Team landing pages" contains an Anthropic API key in api/config.php
+# and must never be committed to this public repository.
+Team landing pages/
+Vagabond economy/
+VATdocs/
+
+# Customer documents that are sent by email, not served from the pages
+financing/Underlag till din bank*.md
+financing/Unterlagen fuer Ihre Bank*.md
