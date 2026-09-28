@@ -375,9 +375,11 @@
         <label for="p-land-group">The plot it goes on</label>
         <div class="radiorow" id="p-land-group">
           <label><input type="radio" name="p-land" value="own" id="p-land-own" checked> I own the land</label>
+              <label><input type="radio" name="p-land" value="buy" id="p-land-buy"> Buying it as part of this</label>
           <label><input type="radio" name="p-land" value="rent" id="p-land-rent"> Rented, leased or borrowed land</label>
           <label><input type="radio" name="p-land" value="unknown" id="p-land-unknown"> Not sorted yet</label>
         </div>
+        <p class="note up" id="p-second" hidden style="margin-top:2px;max-width:76ch"></p>
       </div>
 
       <div class="result" id="p-result" aria-live="polite">
@@ -391,11 +393,12 @@
             <span class="big" id="p-monthly">0 €</span>
             <span class="per">per month, <span id="p-termtext">over 0 years</span></span>
           </div>
-          <p class="note" id="p-route-why" style="margin-top:14px;max-width:62ch"></p>
+        <p class="note" id="p-route-why" style="margin-top:14px;max-width:62ch"></p>
 
           <div class="costbox">
             <div class="costgrid" id="p-costgrid"></div>
             <p class="note" id="p-compare" style="margin:14px 0 0"></p>
+            <p class="note" style="margin:10px 0 0">These figures are for the house. Land, groundwork, connections and permit fees are yours to add, and a lender will count them in when it sizes what you put in.</p>
             <p class="caution"><b>Borrowing money costs money.</b> This is a worked example built from a published rate for your country, at the amount and term shown, named under the figure above. It is not an offer and not a quote. Your own rate, term and fees depend on the lender's assessment of your situation, and the lender decides. Figures are in euro and exclude fees the lender may charge; your lender will quote in your own currency.</p>
           </div>
 
@@ -540,7 +543,7 @@
           </tr>
           <tr>
             <td><b>A mortgage on the house itself</b></td>
-            <td>Only where the house becomes part of land you own, is permitted as a dwelling and can be entered in the land register. Longest terms, lowest rates, most paperwork. <b>Priced like any other mortgage, so the same 2.8 to 5.3 per cent, against a deposit of ten to twenty per cent.</b></td>
+            <td>Only where the house becomes part of land you own, is permitted as a dwelling and can be entered in the land register. Longest terms, lowest rates, most paperwork. If you are buying the land as well, the route starts as a building credit paid out in stages and turns into the mortgage once the house is signed off. <b>Priced like any other mortgage, so the same 2.8 to 5.3 per cent, against a deposit of ten to twenty per cent.</b></td>
             <td class="no">Closed</td><td class="maybe">Sometimes, mixed loan</td><td class="yes">Open</td>
           </tr>
           <tr>
@@ -923,22 +926,26 @@
         borrow: price,
         rate: sc.rate,
         kind: sc.kind,
-        figLabel: c.generic
+        figLabel: (c.generic
           ? 'Over thirty years, at the average home loan rate across the euro area'
-          : 'Over thirty years, at the published average home loan rate in ' + c.name,
+          : 'Over thirty years, at the published average home loan rate in ' + c.name)
+          + ', on the whole price with nothing down',
         why: c.topup
       };
-    } else if (m.cls === 'fixed' && land === 'own') {
+    } else if (m.cls === 'fixed' && (land === 'own' || land === 'buy')) {
+      var mLtv = land === 'buy' ? Math.min(sc.ltv, 0.75) : sc.ltv;
       R = {
         key: 'mortgage',
-        name: 'A mortgage on the house itself',
+        name: land === 'buy' ? 'A building credit, then a mortgage' : 'A mortgage on the house itself',
         months: 360,
-        deposit: price * (1 - sc.ltv),
-        borrow: price * sc.ltv,
+        deposit: price * (1 - mLtv),
+        borrow: price * mLtv,
         rate: sc.rate,
         kind: sc.kind,
-        figLabel: 'Over thirty years, on ' + Math.round(sc.ltv*100) + ' per cent of the price, at ' + (c.generic ? 'euro area mortgage rates' : 'mortgage rates in ' + c.name),
-        why: 'You have picked a model that sits on a foundation, on land you own, which is the one combination that can carry a normal mortgage. That means the longest terms and the lowest rates available, in exchange for planning permission, a valuation and an entry in the land register. Expect months rather than days, and expect to put in the rest of the price yourself.'
+        figLabel: 'Over thirty years, on ' + Math.round(mLtv*100) + ' per cent of the price, at ' + (c.generic ? 'euro area mortgage rates' : 'mortgage rates in ' + c.name),
+        why: land === 'buy'
+          ? 'You have picked a model that sits on a foundation and you will own the ground under it, which is the one combination that can carry a normal mortgage. Because the land is not yours yet, the money runs in two phases: a building credit while the work is done, then the mortgage itself once the house is finished. That is why the deposit below is a quarter rather than the tenth or fifth a finished home needs, and your bank will measure that share against the whole project, land and groundwork included, rather than against the house alone. The rate and the term are the mortgage ones, in exchange for planning permission, a valuation and an entry in the land register.'
+          : 'You have picked a model that sits on a foundation, on land you own, which is the one combination that can carry a normal mortgage. That means the longest terms and the lowest rates available, in exchange for planning permission, a valuation and an entry in the land register. Expect months rather than days, and expect to put in the rest of the price yourself.'
       };
     } else {
       R = {
@@ -1013,7 +1020,17 @@
       alt.push('<b>How much you may add is capped, not the rate.</b> ' + (c.generic
         ? 'Most markets we sell to cap this at 80 to 90 per cent of what your home is worth, counting the loan you already have.'
         : 'In ' + c.name + ' the usual ceiling is ' + Math.round(sc.ltv*100) + ' per cent of what your home is worth, counting the loan you already have.')
-        + ' If you are close to that ceiling, the loan with no security compared just above is the route that does not depend on it.');
+        + ' If you are close to that ceiling, the loan with no security compared just above is the route that does not depend on it.'
+        + (land === 'buy' ? ' And if you are buying the plot, this is also where the deposit for a building credit usually comes from, which is the quickest way past that requirement.' : ''));
+    }
+    if (R.key === 'topup' && m.cls === 'fixed' && (land === 'own' || land === 'buy')) {
+      var aLtv = land === 'buy' ? Math.min(sc.ltv, 0.75) : sc.ltv;
+      var aMonthly = pmt(price * aLtv, sc.rate, 360);
+      alt.push('<b>' + (land === 'buy' ? 'A building credit on the house itself is the other route.' : 'A mortgage on the house itself is the other route.')
+        + '</b> ' + m.n + ' sits on a foundation, so ' + (land === 'buy' ? 'once the plot is yours it ' : 'it ')
+        + 'can carry a charge of its own, at the rate and term named under the plot question above. '
+        + (land === 'buy' ? 'The quarter it asks for is what a building credit wants during the work, and your bank measures that share against the whole project rather than the house alone. ' : '')
+        + 'More paperwork than adding to the loan you already have, and it leaves your own home untouched.');
     }
     if (m.cls === 'mobile') {
       alt.push('<b>' + m.n + ' is a mobile model.</b> It cannot carry a mortgage of its own, but if it is registered as a trailer it can use caravan and motorhome finance, which runs to fifteen years in some countries with the house itself as security. Ask us whether that registration is available for this model.');
@@ -1021,12 +1038,35 @@
     if (m.cls === 'semi') {
       alt.push('<b>' + m.n + ' sits on a steel frame.</b> Too heavy to be registered as a vehicle, and movable enough that a bank will not treat it as land, so a loan with no security or a business lease are the realistic routes.');
     }
-    if (m.cls === 'fixed' && land !== 'own') {
+    if (m.cls === 'fixed' && land !== 'own' && land !== 'buy') {
       alt.push('<b>' + m.n + ' needs a foundation.</b> On land you do not own, a mortgage is not available anywhere we sell, because a charge has to attach to land. That does not stop the purchase, it just means the money comes from somewhere else.');
+    }
+    if (land === 'buy') {
+      alt.push('<b>Buying the land and the house together is a building project.</b> A bank lends against a finished home, and during the build there is not one yet, so the money comes out in stages as the work progresses and becomes an ordinary mortgage once your municipality signs the house off as finished. Two things follow from that. Your share is measured against the whole project, the land and the groundwork and the connections as well as the house, and lenders usually want more of it than the ten to twenty per cent a finished home needs, often about a quarter. And the plot counts towards your share as soon as it is yours and unmortgaged, which is what normally closes the gap. Ask more than one bank, because that share is their own policy rather than the law. Ask us early too: the sign-off at the end is what turns the credit into a mortgage, so the model has to be one your municipality will approve as a dwelling.');
     }
     if (land === 'unknown') {
       alt.push('<b>Sort the plot before the money.</b> Lenders ask where the house will stand, and the answer changes which routes exist. If you are still looking, tell us the region and we will send you the rules and what to ask a seller.');
     }
+    var second = '';
+    if (m.cls === 'fixed' && (land === 'own' || land === 'buy')) {
+      var sLtv = land === 'buy' ? Math.min(sc.ltv, 0.75) : sc.ltv;
+      var sName = land === 'buy' ? 'A building credit, then a mortgage' : 'A mortgage on the house itself';
+      second = R.key === 'mortgage'
+        ? '<b>Because the plot is ' + (land === 'buy' ? 'being bought with the house' : 'yours') + ',</b> your own money in it is '
+          + euro(price * (1 - sLtv)) + ', ' + Math.round((1 - sLtv) * 100) + ' per cent of the price.'
+        : '<b>' + sName + ' is open to you as well.</b> The rate is the same one shown below, so it is not cheaper money: the difference is how much of the price a lender will put up. Against a house it is '
+          + Math.round(sLtv * 100) + ' per cent' + (land === 'buy' ? ' once you take the building phase into account' : '')
+          + ', so ' + euro(price * (1 - sLtv)) + ' has to come from you. Worth it if you would rather leave your own home untouched.';
+    } else if (m.cls === 'fixed') {
+      second = '<b>No mortgage on this model where the land is not yours.</b> A charge has to attach to land, so the routes below are the ones left.';
+    } else if (m.cls === 'mobile') {
+      second = '<b>' + m.n + ' is on wheels, so the plot answer does not change the money here.</b> A house on wheels cannot carry a mortgage of its own wherever it stands, on your land or on someone else\u2019s. What does change the figures for this model is registration as a caravan, which opens vehicle finance over terms as long as fifteen years. Ask us whether that is available for it.';
+    } else if (m.cls === 'semi') {
+      second = '<b>' + m.n + ' sits on a steel frame, so the plot answer does not change the money here.</b> Too heavy to register as a vehicle, and too movable for a bank to treat as part of the land, which leaves a loan with no security or a business lease whatever the plot. Only our modular models can carry a mortgage.';
+    }
+    $('p-second').innerHTML = second;
+    $('p-second').hidden = !second;
+
     $('p-alt').innerHTML = alt.length ? alt.join('<br><br>') : '';
     $('p-alt').hidden = alt.length === 0;
 
@@ -1140,8 +1180,10 @@
     $(id).addEventListener('change', applyBus);
   });
 
-  ['p-country','p-price','p-own-yes','p-own-no','p-land-own','p-land-rent','p-land-unknown']
+  ['p-country','p-price','p-own-yes','p-own-no']
     .forEach(function(id){ $(id).addEventListener('change', renderPrivate); });
+  Array.prototype.forEach.call(document.querySelectorAll('input[name="p-land"]'),
+    function(el){ el.addEventListener('change', renderPrivate); });
   $('p-price').addEventListener('input', renderPrivate);
 
   ['b-country','b-price','b-units','b-use-rent','b-use-staff','b-use-office',
