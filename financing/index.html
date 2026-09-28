@@ -692,6 +692,7 @@
       topup:"Ask your own bank about adding to your existing loan first. German banks lend against a valuation that already sits ten to twenty per cent under market value, and a second-ranking charge adds roughly a third to a whole percentage point, but it is still the cheapest money in this table. Describe the project as an improvement that raises the value of your property, which is the wording their own product pages use.",
       permit:"Since 30 October 2025 section 246e of the Baugesetzbuch lets a municipality approve housing that departs from the local plan, with consent deemed given after three months of silence, and that runs to the end of 2030. It is a fast track rather than permission-free building, so the conversation with your Gemeinde still has to happen. State support for energy-efficient new build is open for houses on foundations and closed for mobile ones."},
     se:{name:"Sweden",
+      lease:"Our leasing partner here writes 60 months rather than 72, with nothing to pay at the start and ten per cent of the price left at the end to own the unit. Their own indicative figures, excluding VAT: a 400 000 kr house is 7 669 kr a month, a 700 000 kr house is 13 421 kr. The rate behind them is the same as the one in the figure above, so the shorter term is what moves the monthly cost. Not an offer, and every deal goes through their credit assessment.",
       sec:{rate:2.78,kind:"nom",ltv:0.8,src:"the average rate on new household mortgage agreements in Sweden, 2.78 per cent, Statistics Sweden, July 2026"},
       unsec:{apr:5.10,nom:5.00,mShort:180,mLong:180,brk:0,max:72000,dep:0,
         why:"Swedish lenders will lend up to about 72 000 € with no security at all, over terms as long as fifteen to twenty years, and one comparison through a broker gives you several offers on a single credit check."},
@@ -1156,6 +1157,9 @@
     }
     if (units >= 3) {
       alt.push('<b>Three or more houses are priced individually.</b> Send us the plan and we will quote the units and the financing together rather than one after the other.');
+    }
+    if (c.lease) {
+      alt.push('<b>Leasing in ' + c.name + ':</b> ' + c.lease);
     }
     alt.push('<b>In ' + c.name + ':</b> ' + c.permit);
     $('b-alt').innerHTML = alt.join('<br><br>');
