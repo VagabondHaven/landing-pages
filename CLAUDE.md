@@ -53,3 +53,12 @@ in Manu's "Vagabond Catalog Redesign" folder (the final English edition is in
 used during editing is left out. Change the catalogue there, rebuild, and copy
 `index.html`, `images/` and the PDF here. Do not edit `catalog/index.html` in place.
 Unlike the other pages, its photos are separate files in `catalog/images/`.
+
+There are three languages. English is `catalog/index.html`; German and Swedish are
+`catalog/de/index.html` and `catalog/sv/index.html`, each with its own PDF next to it,
+and both use the shared `catalog/images/` (their image paths start with `../images/`).
+They are made from the English build by `i18n/apply.py` in the same catalogue folder
+(translations in `i18n/de_*.py` and `i18n/sv_*.py`). A switch in the viewer's top bar
+(EN · DE · SV) moves between them and keeps the page the reader is on. On a first visit
+to the English address, a reader whose browser is set to German or Swedish is sent to that
+edition; once they pick a language with the switch, that choice is remembered.

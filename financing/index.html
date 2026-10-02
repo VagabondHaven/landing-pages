@@ -296,6 +296,16 @@
     .stepswrap{grid-template-columns:1fr .82fr;gap:44px}
     .stepsfig img{aspect-ratio:4/5}
   }
+  .situations{display:flex;flex-direction:column;gap:16px}
+  .sitlead{font-size:.98rem;color:var(--muted);max-width:66ch}
+  .sitgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:2px;background:var(--line);border:1px solid var(--line)}
+  .sit{background:var(--card);padding:20px;display:flex;flex-direction:column;gap:12px}
+  .sit h3{font-size:1.02rem}
+  .sitrate{font-family:'Source Serif 4',Georgia,serif;font-size:1.65rem;font-weight:600;color:var(--terra);line-height:1;font-variant-numeric:tabular-nums}
+  .sitr{display:flex;flex-direction:column;gap:2px;border-top:1px solid var(--line);padding-top:10px}
+  .sitr b{font-weight:500;font-size:.95rem}
+  .sitr span{font-size:.88rem;color:var(--muted);line-height:1.45}
+  .sitr i{font-style:normal;color:var(--terra);font-size:.88rem;font-variant-numeric:tabular-nums}
   footer{background:var(--sand);font-size:.84rem;color:var(--muted);padding-block:26px}
   @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
@@ -522,8 +532,32 @@
   <div class="wrap stack-l">
     <div class="stack narrow">
       <span class="eyebrow">What each route costs</span>
-      <h2>Six ways people pay for these houses</h2>
+      <h2>Six ways to pay for it</h2>
       <p class="intro">Which ones are open to you depends on one thing above all: whether the house you choose stays movable or becomes part of the land. That is not a detail, it decides whether a bank can take the house as security, and therefore what it costs you to borrow.</p>
+    </div>
+
+    <div class="situations">
+      <p class="sitlead">Which of them are open to you also depends on what you have to borrow against. Start with the one that fits you.</p>
+      <div class="sitgrid">
+        <div class="sit">
+          <h3>You own a home or the land</h3>
+          <b class="sitrate">2.8 to 5.3 %</b>
+          <div class="sitr"><b>Borrow against your home</b><span>Your bank lends more on the home you already have.</span></div>
+          <div class="sitr"><b>A mortgage on the new house</b><span>For a modular house on land you own.</span></div>
+        </div>
+        <div class="sit">
+          <h3>The house goes on rented land</h3>
+          <b class="sitrate">3.8 to 11.6 %</b>
+          <div class="sitr"><b>A loan with no security</b><span>Against your income, up to fifteen years.</span><i>3.8 to 11.6 %</i></div>
+          <div class="sitr"><b>Leisure vehicle finance</b><span>A mobile house registered as a caravan, where a lender in your country will take it.</span><i>5.5 to 9 %</i></div>
+          <div class="sitr"><b>Instalments at the point of sale</b><span>Through our partner lender, whatever your situation, up to about 31&nbsp;000&nbsp;&euro; over twelve years.</span><i>just under 7 %</i></div>
+        </div>
+        <div class="sit">
+          <h3>You buy as a business</h3>
+          <b class="sitrate">about 8.4 %</b>
+          <div class="sitr"><b>Business lease</b><span>Seventy-two months, no down payment, nothing to pay at the end to own it.</span></div>
+        </div>
+      </div>
     </div>
 
     <div class="tablewrap">
@@ -570,6 +604,7 @@
       </table>
     </div>
     <p class="note up">One thing worth knowing before you fall in love with a model: the rules that reward a house for being permanent are not the rules that reward it for being movable. A house bolted to a foundation can carry a mortgage and, in some countries, qualify for state support. A house that can be lifted and moved can be leased, financed as a vehicle and taken with you. We will tell you which side of that line each model sits on before you order, not after.</p>
+    <p class="note">We arrange financing ourselves in Sweden, Germany and Norway, where we work directly with the lenders and know what each of them will and will not accept. Elsewhere we know the shape of the market rather than every lender in it, so tell us where the house will stand and we will find out what is open to you before you count on it.</p>
   </div>
 </section>
 
