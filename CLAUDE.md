@@ -44,3 +44,12 @@ No country is named anywhere in the visible text, on purpose: the page is read
 across Europe and naming one market reads as excluding the others. Country
 figures live in the `MARKETS` object in the script and appear only after the
 reader selects a country. Keep that separation.
+
+## The catalogue
+
+`catalog/` is generated, not hand-written. Its `index.html` is built by `build.py`
+in Manu's "Vagabond Catalog Redesign" folder (the final English edition is in
+"Vagabond Haven Catalog 2026 FINAL (EN)"), with `CLEAN=1` so the photo-swap tool
+used during editing is left out. Change the catalogue there, rebuild, and copy
+`index.html`, `images/` and the PDF here. Do not edit `catalog/index.html` in place.
+Unlike the other pages, its photos are separate files in `catalog/images/`.
