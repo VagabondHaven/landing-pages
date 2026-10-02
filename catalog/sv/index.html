@@ -830,7 +830,10 @@ html[lang=de] .estrip b{font-size:20px;white-space:nowrap}
 .vbar a.vpdf{background:var(--clay);border-color:var(--clay);color:#fff}
 .vbar a.vpdf:hover{background:#a65a31;border-color:#a65a31}
 body.vscroll{padding-top:76px}
-body.vscroll .page{zoom:var(--z,1)}
+/* scroll view: pages are scaled with transform rather than the non-standard zoom, which phones (iOS Safari above all) render differently */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body.vscroll #pages{overflow-x:clip}
+body.vscroll .page{transform:scale(var(--z,1));transform-origin:50% 0;margin-left:calc((100% - 794px)/2);margin-right:0;margin-bottom:calc(40px*var(--z,1) + 1123px*(var(--z,1) - 1))}
 body.vflip{padding:0;overflow:hidden;background:#E9E2D6}
 body.vflip #pages{display:none}
 #stage{display:none}
@@ -838,7 +841,7 @@ body.vflip #stage{display:flex;position:fixed;top:52px;left:0;right:0;bottom:0;a
 #stage .fp{background:var(--cream);overflow:hidden}
 #stage .fp>.page{margin:0!important;box-shadow:none!important;transform-origin:0 0}
 @media (max-width:700px){.vbar .vt{display:none}.vbar{gap:6px;padding:0 8px}.vbar .vpg{min-width:56px}}
-@media print{.vbar,#stage{display:none!important}#pages{display:block!important}body,body.vscroll,body.vflip{padding:0!important;overflow:visible!important;background:none!important}.page{zoom:1!important}}
+@media print{.vbar,#stage{display:none!important}#pages{display:block!important}body,body.vscroll,body.vflip{padding:0!important;overflow:visible!important;background:none!important}.page{zoom:1!important;transform:none!important;margin:0!important}}
 @media (max-width:1100px){.vbar a.vlink{display:none}}
 /* ---- book look: page edges, gutter shadow, centre line, drop shadow ---- */
 body.vflip{background:radial-gradient(ellipse at 50% 45%,#EFE9DF 0%,#DDD3C4 100%)}
