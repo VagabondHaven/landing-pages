@@ -5,7 +5,13 @@
 cd "$(dirname "$0")" || exit 1
 printf '\nVagabond Haven landing pages\n%s\n\n' "$(pwd)"
 
-git fetch -q origin main 2>/dev/null
+printf 'Checking GitHub...\n'
+if ! git fetch -q origin main; then
+  printf '\nCould not reach GitHub (the reason is above). Check the internet connection and try again.\n'
+  read -r -p 'Press Enter to close. '; exit 1
+fi
+printf 'Looking for changes. If this folder is in iCloud and files were offloaded,\n'
+printf 'the first run can take a few minutes while they download.\n\n'
 
 changes="$(git status --porcelain)"
 if [ -n "$changes" ]; then

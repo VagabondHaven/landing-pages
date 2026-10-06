@@ -19,6 +19,15 @@ live Anthropic API key, so that folder must never be committed to this public
 repository. Check `git status` before committing and never use `git add -A`
 without reading what it picked up.
 
+## Who changes these pages, and where they also live
+
+Since 6 October 2026 Claude owns the design and wording of these landing pages and the
+catalogue (Manu's decision). Every change is saved here and, in the same session, copied
+unchanged into the website repository (VagabondHaven/Vagabond-Haven-website): the pages to
+`src/landing/<name>.html` (`referral-terms` becomes `referral-programme-terms.html`), the
+catalogue to `public/catalog/`. The website rewrites the links to vagabondhaven.com and its
+subdomains by itself, so the files stay identical. Manu updates the live landing pages from here.
+
 ## Working on these pages
 
 Edit in place with single-match replacements and verify the match count, rather
@@ -48,11 +57,13 @@ reader selects a country. Keep that separation.
 ## The catalogue
 
 `catalog/` is generated, not hand-written. Its `index.html` is built by `build.py`
-in Manu's "Vagabond Catalog Redesign" folder (the final English edition is in
-"Vagabond Haven Catalog 2026 FINAL (EN)"), with `CLEAN=1` so the photo-swap tool
-used during editing is left out. Change the catalogue there, rebuild, and copy
-`index.html`, `images/` and the PDF here. Do not edit `catalog/index.html` in place.
-Unlike the other pages, its photos are separate files in `catalog/images/`.
+in Manu's "Vagabond Catalog Redesign" folder on the Desktop; the current edition is
+"Vagabond Haven Catalog 2026 FINAL v6 (EN DE SV)" (each change goes into a new version
+folder, see its README). Build with `CLEAN=1` so the photo-swap tool used during editing is
+left out. Change the catalogue there, rebuild, and copy `index.html`, `de/`, `sv/`, `images/`
+and the PDFs here. Do not edit `catalog/index.html` in place. Unlike the other pages, its
+photos are separate files in `catalog/images/`. The PDFs are printed with Chromium and
+compressed with Ghostscript (see the v6 README).
 
 There are three languages. English is `catalog/index.html`; German and Swedish are
 `catalog/de/index.html` and `catalog/sv/index.html`, each with its own PDF next to it,

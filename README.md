@@ -5,9 +5,9 @@ first checked 21 September 2026, the two referral pages downloaded 23 September 
 
 | Folder | Live URL |
 |---|---|
-| partners/ | https://partners.vagabondhaven.com/ |
-| operators/ | https://operators.vagabondhaven.com/ |
-| referrals/ | https://referrals.vagabondhaven.com/ |
+| partners/ | https://vagabondhaven.com/partners |
+| operators/ | https://vagabondhaven.com/operators |
+| referrals/ | https://vagabondhaven.com/referrals |
 | financing/ | https://financing.vagabondhaven.com/ |
 | faq/ | https://faq.vagabondhaven.com/ |
 | referral-terms/ | https://referral-terms.vagabondhaven.com/ |
